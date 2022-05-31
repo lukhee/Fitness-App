@@ -41,23 +41,40 @@ jobs:
       - run: echo $_env_name
 
   create_infrastructure: 
-      docker:
-        - image: amazon/aws-cli
-      steps:
-        - checkout
-        - run:
-            name: Create Cloudformation Stack
-            command: |
-              aws cloudformation deploy \
-                --template-file template.yml \
-                --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-                --region us-east-1
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Create Cloudformation Stack
+          command: |
+            aws cloudformation deploy \
+              --template-file template.yml \
+              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+              --region us-east-1
 #         - run: return 1
-        - destroy_environment
+      - destroy_environment
 
+  configure_infrastructure: 
+    docker: python:3.7-alpine3.11
+      - image: 
+    steps:
+      - checkout
+      - add_ssh_keys:
+              # You can get this ID in the section where you registered the SSH Key
+              fingerprints: ["34:11:f3:db:ee:fd:ba:00:84:43:37:6a:1f:35:f6:83"] 
+      - run:
+          name: Install Ansible
+          command: |
+            apk add --update ansible # Install Ansible
+      - run:
+          name: Run Playbook and Configure server
+          command: |
+            ansible-playbook -i inventory main.yml # Your command
 # Sequential workflow
 workflows:
   my_workflow:
       jobs:
         - print_greetings
         - create_infrastructure
+        - configure_infrastructure
