@@ -70,8 +70,7 @@ jobs:
       - run:
           name: Run Playbook and Configure server
           command: |
-            ansible-playbook -i inventory main.yml # Your command
-            yes
+            sudo ansible-playbook -i inventory main.yml 
             
         
   smoke_test:
