@@ -71,6 +71,8 @@ jobs:
           name: Run Playbook and Configure server
           command: |
             ansible-playbook -i inventory main.yml # Your command
+     - run: 
+          command: yes
 
   smoke_test:
     docker:
