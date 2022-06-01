@@ -72,7 +72,8 @@ jobs:
           command: |
             ansible-playbook -i inventory main.yml # Your command
       - run: 
-          command: yes
+          command: |
+            yes
 
   smoke_test:
     docker:
