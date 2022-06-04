@@ -70,7 +70,7 @@ jobs:
       - run:
           name: Run Playbook and Configure server
           command: |
-            ansible-playbook -i inventory main.yml 
+            ansible-playbook -i inventory main.yml StrictHostKeyChecking=no
             
   configure_infrastructure_2: 
     docker: 
@@ -84,7 +84,7 @@ jobs:
       - run:
           name: Fix ssh Could not resolve hostname
           command: |
-            ssh-keyscan ec2-44-202-48-214.compute-1.amazonaws.com >> ~/.ssh/known_hosts # Add to known hosts.
+            ssh-keyscan ec2-54-89-145-229.compute-1.amazonaws.com >> ~/.ssh/known_hosts # Add to known hosts.
       - add_ssh_keys
       - run:
           name: Debug
@@ -124,4 +124,4 @@ workflows:
         - create_infrastructure
         - configure_infrastructure
         - smoke_test
-#         - configure_infrastructure_2
+        - configure_infrastructure_2
