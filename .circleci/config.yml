@@ -60,7 +60,7 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - add_ssh_keys
+      - add_ssh_keys:
           fingerprints: 
             - "34:11:f3:db:ee:fd:ba:00:84:43:37:6a:1f:35:f6:83"
       - run:
