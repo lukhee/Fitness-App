@@ -87,6 +87,10 @@ jobs:
             ssh-keyscan ec2-44-202-48-214.compute-1.amazonaws.com >> ~/.ssh/known_hosts # Add to known hosts.
       - add_ssh_keys
       - run:
+          name: Debug
+          command: |
+            ls ~/.ssh
+      - run:
           name: Install Ansible
           command: |
             apk add --update ansible # Install Ansible
