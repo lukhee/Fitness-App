@@ -60,6 +60,10 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
+      - run:
+          name: Fix ssh Could not resolve hostname
+          command: |
+            ssh-keyscan ec2-44-202-48-214.compute-1.amazonaws.com >> ~/.ssh/known_hosts # Add to known hosts.
       - add_ssh_keys:
           fingerprints: 
             - "34:11:f3:db:ee:fd:ba:00:84:43:37:6a:1f:35:f6:83"
