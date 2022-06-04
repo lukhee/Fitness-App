@@ -124,4 +124,4 @@ workflows:
         - create_infrastructure
         - configure_infrastructure
         - smoke_test
-#         - configure_infrastructure_2
+        - configure_infrastructure_2
