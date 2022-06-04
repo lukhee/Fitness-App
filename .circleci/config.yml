@@ -70,7 +70,7 @@ jobs:
       - run:
           name: Run Playbook and Configure server
           command: |
-            ansible-playbook -i inventory main.yml StrictHostKeyChecking=no
+            ansible-playbook -i inventory main.yml
             
   configure_infrastructure_2: 
     docker: 
@@ -97,7 +97,8 @@ jobs:
       - run:
           name: Run Playbook and Configure server
           command: |
-            ansible-playbook -i inventory main.yml StrictHostKeyChecking=no
+            # ansible-playbook -i inventory main.yml StrictHostKeyChecking=no
+            ansible-playbook -i inventory main.yml 
             
  
   smoke_test:
